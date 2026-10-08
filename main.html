@@ -1,27 +1,201 @@
-<h1>Data Science</h1>
-how to manage data and its innovation 
-BASIC fundamentals of data analytics 
-collection su=torage and use in ai ..
-and way to eb enginer data and analytics
-data crunchers if cisco and theor internshiop ...
-what data actually is ..
-like every form filling posting behaviour extra and its tyoes 
-volunteered, observed, or inferred data.
-data usage in daily life we are more connected then ever 
-every where we go every thing we do is new source of data in the world of social media and every ours desicion making and what we need to going to buy and ability to connect data.. 
-now we have ability to track and isolate and predict because this big amount of data we have fro the social media ..
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Science – Cisco Course Notes</title>
+<style>
+  :root {
+    --bg: #f5f7fb;
+    --card: #ffffff;
+    --text: #1f2937;
+    --muted: #6b7280;
+    --accent: #0b6bcb;
+    --accent-soft: #e6f0fb;
+    --border: #e5e7eb;
+    --shadow: 0 2px 10px rgba(15, 23, 42, .06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #5aa9f5;
+      --accent-soft: #1e3a5f;
+      --border: #334155;
+      --shadow: 0 2px 10px rgba(0, 0, 0, .4);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+  header {
+    background: linear-gradient(135deg, #0b6bcb, #14b8a6);
+    color: #fff;
+    padding: 56px 16px 64px;
+    text-align: center;
+  }
+  header h1 { margin: 0 0 8px; font-size: clamp(2rem, 6vw, 3rem); }
+  header p { margin: 0 auto; max-width: 620px; opacity: .92; font-size: 1.05rem; }
+  main { max-width: 860px; margin: -32px auto 48px; padding: 0 16px; }
+  section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 24px 28px;
+    margin-bottom: 20px;
+  }
+  h2 {
+    margin: 0 0 12px;
+    font-size: 1.35rem;
+    color: var(--accent);
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent-soft);
+  }
+  h3 { margin: 18px 0 6px; font-size: 1.05rem; }
+  p { margin: 8px 0; }
+  ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .tag {
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: .88rem;
+    font-weight: 600;
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 12px; }
+  .box {
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 12px 16px;
+    background: var(--bg);
+  }
+  .box h3 { margin-top: 0; }
+  .box.alt { border-left-color: #14b8a6; }
+  .todo { color: var(--muted); font-style: italic; }
+</style>
+</head>
+<body>
 
-Purpose: Visualizations (like charts and graphs) transform raw data into easy-to-understand formats to highlight trends and patterns.
+<header>
+  <h1>Data Science</h1>
+  <p>How to manage data and its innovation — notes from the Cisco course.</p>
+</header>
 
-Selection: Match your chart type to the specific story or pattern you want to show—not every chart fits every dataset.
+<main>
 
-Factors to Consider:
+<section>
+  <h2>Overview</h2>
+  <ul>
+    <li>Basic fundamentals of data analytics</li>
+    <li>Collection, storage and use in AI</li>
+    <li>Ways to engineer data and analytics</li>
+    <li>Data crunchers at Cisco and their internship</li>
+  </ul>
+</section>
 
-Variables: How many characteristics are measured.
+<section>
+  <h2>What Data Actually Is</h2>
+  <p>Every form we fill, every post we make and every behaviour we show produces data.</p>
+  <div class="tags">
+    <span class="tag">Volunteered</span>
+    <span class="tag">Observed</span>
+    <span class="tag">Inferred</span>
+  </div>
+  <h3>Data in daily life</h3>
+  <p>We are more connected than ever. Everywhere we go and everything we do is a new source of data. In the world of social media, our decisions — and what we are going to buy — can be connected and analysed. With this huge amount of data we can now track, isolate and predict.</p>
+</section>
 
-Data points: The volume of information within each variable.
+<section>
+  <h2>Data Visualization</h2>
+  <p><strong>Purpose:</strong> Charts and graphs transform raw data into easy-to-understand formats that highlight trends and patterns.</p>
+  <p><strong>Selection:</strong> Match the chart type to the story or pattern you want to show — not every chart fits every dataset.</p>
+  <h3>Factors to consider</h3>
+  <div class="grid">
+    <div class="box"><h3>Variables</h3>How many characteristics are measured.</div>
+    <div class="box"><h3>Data points</h3>The volume of information within each variable.</div>
+    <div class="box"><h3>Time</h3>Whether the data tracks change over time (hourly, daily, etc.).</div>
+    <div class="box"><h3>Relationships</h3>Whether you need to compare or correlate different data points.</div>
+  </div>
+  <p>Graphs can be used alongside tabular data.</p>
+</section>
 
-Time: Whether the data tracks changes over time (hourly, daily, etc.).
+<section>
+  <h2>Types of Data</h2>
+  <p>Data is all around us. It can be <strong>quantitative</strong> or <strong>qualitative</strong>, and <strong>discrete</strong> or <strong>continuous</strong>.</p>
+  <div class="grid">
+    <div class="box">
+      <h3>Discrete data</h3>
+      <p>Collected by counting. Whole, concrete numbers, often prefixed with “the number of”.</p>
+      <ul>
+        <li>Customers who bought bicycles</li>
+        <li>Employees in each department</li>
+        <li>Diesel fuel purchased each week for a delivery truck</li>
+      </ul>
+    </div>
+    <div class="box alt">
+      <h3>Continuous data</h3>
+      <p>Collected by measuring. Includes complex, fluctuating numbers.</p>
+      <ul>
+        <li>Temperature inside the store</li>
+        <li>Speed of a rider in a race</li>
+        <li>Distance travelled by a moving bicycle</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Data types</h3>
+  <div class="tags">
+    <span class="tag">String</span>
+    <span class="tag">Boolean</span>
+    <span class="tag">Integer</span>
+    <span class="tag">…</span>
+  </div>
+</section>
 
-Relationships: Whether you need to compare or correlate different data points.
+<section>
+  <h2>Variety of Data</h2>
+  <ul>
+    <li>Structured vs unstructured data</li>
+    <li>Relational and non-relational databases</li>
+  </ul>
+</section>
 
+<section>
+  <h2>Analytics &amp; Insights</h2>
+  <ul>
+    <li>Business understanding</li>
+    <li>Data analytics for business insights</li>
+    <li>Humanitarian insights from data analytics</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Excel: Pivot Tables &amp; Charts</h2>
+  <ul>
+    <li>Visualizing data with pivoting and Excel tables</li>
+    <li>Building pivot charts and labs</li>
+    <li>Created pivot charts for the ice cream business in the lab</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Still to Write</h2>
+  <ul class="todo">
+    <li>Experience analytics summary</li>
+    <li>Characteristics associated with big data</li>
+  </ul>
+</section>
+
+</main>
+</body>
+</html>
