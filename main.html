@@ -1,369 +1,1672 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Data Science Fundamentals: Data Types, Big Data, Pipelines &amp; AI | Cisco Course Notes</title>
-<meta name="description" content="A research-style study of data science fundamentals from the Cisco Networking Academy course: types of data, data visualization, the four Vs of big data, data pipelines, CSV/JSON/XML formats, and AI vs machine learning.">
-<meta name="keywords" content="data science, data analytics, big data, four Vs of big data, data pipeline, structured vs unstructured data, discrete vs continuous data, data visualization, CSV JSON XML, machine learning, artificial intelligence, Cisco Networking Academy">
-<meta name="author" content="Umer Aziz">
-<meta name="robots" content="index, follow">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Data Science Fundamentals: Data Types, Big Data, Pipelines &amp; AI">
-<meta property="og:description" content="Research-style notes on data science fundamentals from the Cisco Networking Academy course.">
-<meta name="twitter:card" content="summary">
-<script type="application/ld+json">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Data Science Fundamentals: Data Types, Big Data, Pipelines &amp; AI | Cisco Course Notes</title>
+    <meta name="description"
+        content="An interactive, visual guide to data science fundamentals from the Cisco Networking Academy course: types of data, data visualization, the four Vs of big data, data pipelines, CSV/JSON/XML, AI and machine learning.">
+    <meta name="keywords"
+        content="data science, data analytics, big data, four Vs of big data, data pipeline, structured vs unstructured data, discrete vs continuous data, data visualization, CSV JSON XML, machine learning, supervised unsupervised reinforcement learning, artificial intelligence, Cisco Networking Academy">
+    <meta name="author" content="Umer Aziz">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Data Science Fundamentals: Data Types, Big Data, Pipelines &amp; AI">
+    <meta property="og:description"
+        content="Interactive visual notes on data science fundamentals from the Cisco Networking Academy course.">
+    <meta name="twitter:card" content="summary">
+    <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Data Science Fundamentals: Data Types, Big Data, Pipelines & AI",
-  "description": "Research-style study notes on data science fundamentals from the Cisco Networking Academy course.",
+  "description": "Interactive visual study notes on data science fundamentals from the Cisco Networking Academy course.",
   "author": { "@type": "Person", "name": "Umer Aziz" },
   "inLanguage": "en",
   "keywords": "data science, big data, data pipeline, data visualization, machine learning, AI"
 }
 </script>
-<style>
-  :root {
-    --bg: #f4f6fa;
-    --card: #ffffff;
-    --text: #1f2937;
-    --muted: #64748b;
-    --accent: #0b6bcb;
-    --accent2: #0d9488;
-    --accent-soft: #e6f0fb;
-    --border: #e2e8f0;
-    --code: #0f172a;
-    --shadow: 0 2px 12px rgba(15, 23, 42, .07);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0b1220;
-      --card: #162033;
-      --text: #e5e7eb;
-      --muted: #94a3b8;
-      --accent: #60a5fa;
-      --accent2: #2dd4bf;
-      --accent-soft: #1e3a5f;
-      --border: #2b3a52;
-      --shadow: 0 2px 12px rgba(0, 0, 0, .45);
-    }
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.75;
-    font-size: 17px;
-  }
-  h1, h2, h3, nav, .tag, .meta, th, .label {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  }
-  header.hero {
-    background: linear-gradient(135deg, #0b6bcb, #0d9488);
-    color: #fff;
-    padding: 64px 16px 72px;
-    text-align: center;
-  }
-  .hero h1 { margin: 0 auto 12px; max-width: 760px; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; }
-  .hero .meta { opacity: .92; font-size: .95rem; }
-  .hero .abstract-tags { margin-top: 18px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-  .hero .abstract-tags span { background: rgba(255,255,255,.18); padding: 3px 12px; border-radius: 999px; font-size: .82rem; font-family: system-ui, sans-serif; }
-  main { max-width: 860px; margin: -36px auto 56px; padding: 0 16px; }
-  article > section, nav.toc {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    box-shadow: var(--shadow);
-    padding: 26px 30px;
-    margin-bottom: 22px;
-  }
-  h2 {
-    margin: 0 0 14px;
-    font-size: 1.45rem;
-    color: var(--accent);
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--accent-soft);
-  }
-  h3 { margin: 22px 0 6px; font-size: 1.08rem; }
-  p { margin: 10px 0; }
-  ul, ol { padding-left: 24px; }
-  li { margin: 5px 0; }
-  nav.toc h2 { font-size: 1.1rem; }
-  nav.toc ol { columns: 2; column-gap: 28px; margin: 0; }
-  nav.toc a { color: var(--accent); text-decoration: none; }
-  nav.toc a:hover { text-decoration: underline; }
-  .abstract { border-left: 5px solid var(--accent2); }
-  .abstract .label { color: var(--accent2); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .8rem; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 14px 0; }
-  .box { border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 10px; padding: 12px 16px; background: var(--bg); }
-  .box h3 { margin-top: 0; }
-  .box.alt { border-left-color: var(--accent2); }
-  .box p { margin: 6px 0; font-size: .96rem; }
-  .callout { background: var(--accent-soft); border-radius: 10px; padding: 12px 18px; margin: 16px 0; font-size: .97rem; }
-  .vs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: .95rem; }
-  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  th { background: var(--accent-soft); color: var(--accent); }
-  .table-wrap { overflow-x: auto; }
-  .pipeline { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; margin: 16px 0; }
-  .pipeline .step { flex: 1 1 180px; border-radius: 10px; padding: 12px 14px; background: var(--accent-soft); border: 1px solid var(--border); }
-  .pipeline .step b { display: block; color: var(--accent); font-family: system-ui, sans-serif; }
-  .pipeline .arrow { align-self: center; color: var(--muted); font-size: 1.4rem; }
-  pre {
-    background: var(--code); color: #e2e8f0; padding: 14px 16px; border-radius: 10px;
-    overflow-x: auto; font-size: .85rem; line-height: 1.5; margin: 10px 0;
-  }
-  code { font-family: ui-monospace, Menlo, Consolas, monospace; }
-  .todo { color: var(--muted); font-style: italic; }
-  footer { text-align: center; color: var(--muted); font-size: .85rem; padding: 0 16px 40px; font-family: system-ui, sans-serif; }
-  @media (max-width: 600px) {
-    nav.toc ol { columns: 1; }
-    article > section, nav.toc { padding: 20px 18px; }
-    .pipeline .arrow { display: none; }
-  }
-</style>
+    <style>
+        :root {
+            --bg: #070b1a;
+            --bg2: #0d1430;
+            --card: rgba(255, 255, 255, .06);
+            --line: rgba(255, 255, 255, .12);
+            --text: #e8ecff;
+            --muted: #9aa6d1;
+            --a: #5b8cff;
+            --b: #22d3ee;
+            --c: #a78bfa;
+            --d: #f472b6;
+            --e: #fbbf24;
+            --f: #34d399;
+            --grad: linear-gradient(135deg, #5b8cff, #22d3ee 50%, #a78bfa);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-size: 17px
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(900px 600px at 15% 10%, rgba(91, 140, 255, .22), transparent 60%),
+                radial-gradient(800px 600px at 90% 40%, rgba(167, 139, 250, .18), transparent 60%),
+                radial-gradient(700px 500px at 30% 95%, rgba(34, 211, 238, .15), transparent 60%)
+        }
+
+        a {
+            color: var(--b)
+        }
+
+        #progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 0;
+            background: var(--grad);
+            z-index: 100
+        }
+
+        .dots {
+            position: fixed;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .dots a {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--line);
+            display: block;
+            transition: .3s;
+            position: relative
+        }
+
+        .dots a.on {
+            background: var(--b);
+            transform: scale(1.5);
+            box-shadow: 0 0 12px var(--b)
+        }
+
+        .dots a:hover::after {
+            content: attr(data-t);
+            position: absolute;
+            right: 20px;
+            top: -6px;
+            background: var(--bg2);
+            border: 1px solid var(--line);
+            padding: 2px 10px;
+            border-radius: 8px;
+            font-size: .78rem;
+            white-space: nowrap
+        }
+
+        .wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        section {
+            padding: 110px 0 40px;
+            position: relative
+        }
+
+        .eyebrow {
+            font-size: .78rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--b);
+            font-weight: 700
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4.5vw, 3rem);
+            line-height: 1.15;
+            margin: 8px 0 14px;
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            margin-bottom: 6px
+        }
+
+        .lead {
+            color: var(--muted);
+            max-width: 720px;
+            font-size: 1.08rem;
+            margin-bottom: 34px
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 22px;
+            backdrop-filter: blur(10px)
+        }
+
+        .grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+        }
+
+        .take {
+            margin-top: 28px;
+            border-left: 4px solid var(--e);
+            padding: 12px 18px;
+            background: rgba(251, 191, 36, .08);
+            border-radius: 0 14px 14px 0;
+            color: #fde7a6
+        }
+
+        .take b {
+            color: var(--e)
+        }
+
+        /* reveal on scroll */
+        .rv {
+            opacity: 0;
+            transform: translateY(60px) rotateX(18deg) scale(.96);
+            transform-origin: 50% 100%;
+            transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1)
+        }
+
+        .rv.in {
+            opacity: 1;
+            transform: none
+        }
+
+        .rv.d1 {
+            transition-delay: .12s
+        }
+
+        .rv.d2 {
+            transition-delay: .24s
+        }
+
+        .rv.d3 {
+            transition-delay: .36s
+        }
+
+        .persp {
+            perspective: 1100px
+        }
+
+        /* tilt cards */
+        .tilt {
+            transform-style: preserve-3d;
+            transition: transform .15s ease-out, box-shadow .3s, opacity .9s;
+            will-change: transform
+        }
+
+        .tilt:hover {
+            box-shadow: 0 30px 60px -20px rgba(91, 140, 255, .45)
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 60px 0;
+            overflow: hidden;
+            position: relative
+        }
+
+        .hero .wrap {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 30px;
+            align-items: center
+        }
+
+        .hero h1 {
+            font-size: clamp(2.3rem, 6vw, 4.4rem);
+            line-height: 1.05;
+            margin: 10px 0 18px
+        }
+
+        .hero h1 span {
+            background: var(--grad);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .hero p {
+            color: var(--muted);
+            max-width: 520px;
+            font-size: 1.12rem
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 22px 0
+        }
+
+        .chip {
+            border: 1px solid var(--line);
+            background: var(--card);
+            padding: 4px 14px;
+            border-radius: 99px;
+            font-size: .84rem;
+            display: inline-block
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 13px 28px;
+            border-radius: 99px;
+            background: var(--grad);
+            color: #06102b;
+            font-weight: 800;
+            text-decoration: none;
+            box-shadow: 0 10px 40px -10px var(--a);
+            transition: .3s
+        }
+
+        .btn:hover {
+            transform: translateY(-3px) scale(1.04)
+        }
+
+        .scene {
+            perspective: 900px;
+            height: 380px;
+            display: grid;
+            place-items: center;
+            position: relative
+        }
+
+        .cube {
+            width: 170px;
+            height: 170px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spin 18s linear infinite
+        }
+
+        .scene:hover .cube {
+            animation-play-state: paused
+        }
+
+        .cube div {
+            position: absolute;
+            inset: 0;
+            border: 2px solid rgba(34, 211, 238, .7);
+            background: linear-gradient(135deg, rgba(91, 140, 255, .25), rgba(167, 139, 250, .2));
+            display: grid;
+            place-items: center;
+            font-size: 2.6rem;
+            box-shadow: inset 0 0 40px rgba(34, 211, 238, .25)
+        }
+
+        .cube .f1 {
+            transform: translateZ(85px)
+        }
+
+        .cube .f2 {
+            transform: rotateY(90deg) translateZ(85px)
+        }
+
+        .cube .f3 {
+            transform: rotateY(180deg) translateZ(85px)
+        }
+
+        .cube .f4 {
+            transform: rotateY(-90deg) translateZ(85px)
+        }
+
+        .cube .f5 {
+            transform: rotateX(90deg) translateZ(85px)
+        }
+
+        .cube .f6 {
+            transform: rotateX(-90deg) translateZ(85px)
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotateX(-20deg) rotateY(0)
+            }
+
+            to {
+                transform: rotateX(-20deg) rotateY(360deg)
+            }
+        }
+
+        .orbit {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px dashed var(--line);
+            border-radius: 50%;
+            transform: rotateX(70deg);
+            animation: orb 10s linear infinite
+        }
+
+        @keyframes orb {
+            to {
+                transform: rotateX(70deg) rotateZ(360deg)
+            }
+        }
+
+        .orbit i {
+            position: absolute;
+            top: -7px;
+            left: 50%;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--d);
+            box-shadow: 0 0 18px var(--d)
+        }
+
+        .float {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: .6;
+            animation: fl 9s ease-in-out infinite
+        }
+
+        @keyframes fl {
+            50% {
+                transform: translateY(-40px) translateX(20px)
+            }
+        }
+
+        /* flip cards */
+        .flip {
+            height: 240px;
+            perspective: 900px;
+            cursor: pointer
+        }
+
+        .flip-in {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform .8s cubic-bezier(.2, .7, .2, 1)
+        }
+
+        .flip:hover .flip-in,
+        .flip:focus .flip-in,
+        .flip.on .flip-in {
+            transform: rotateY(180deg)
+        }
+
+        .face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 20px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 8px
+        }
+
+        .face .big {
+            font-size: 3rem
+        }
+
+        .front {
+            background: var(--bg2)
+        }
+
+        .back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #27408f, #4b3a96)
+        }
+
+        /* demos */
+        .demo {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+        }
+
+        .tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: .9rem
+        }
+
+        .tree .row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        .node {
+            padding: 6px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--line);
+            background: var(--card)
+        }
+
+        .node.top {
+            background: var(--grad);
+            color: #06102b;
+            font-weight: 800
+        }
+
+        .node.q {
+            border-color: var(--c)
+        }
+
+        .node.n {
+            border-color: var(--b)
+        }
+
+        .link {
+            width: 2px;
+            height: 16px;
+            background: var(--line)
+        }
+
+        .bikes {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            min-height: 48px;
+            margin: 10px 0;
+            font-size: 1.8rem
+        }
+
+        .bikes span {
+            animation: pop .4s
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(0) rotate(-90deg)
+            }
+        }
+
+        button.sm {
+            background: var(--card);
+            color: var(--text);
+            border: 1px solid var(--line);
+            padding: 8px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: .92rem;
+            transition: .2s;
+            font-family: inherit
+        }
+
+        button.sm:hover,
+        button.sm.on {
+            background: var(--a);
+            border-color: var(--a);
+            color: #fff
+        }
+
+        input[type=range] {
+            width: 100%;
+            accent-color: var(--b)
+        }
+
+        .thermo {
+            height: 26px;
+            border-radius: 99px;
+            background: linear-gradient(90deg, #38bdf8, #fbbf24, #ef4444);
+            position: relative;
+            margin: 14px 0
+        }
+
+        .thermo i {
+            position: absolute;
+            top: -6px;
+            width: 12px;
+            height: 38px;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 0 14px #fff;
+            transition: left .1s
+        }
+
+        .big-n {
+            font-size: 2.4rem;
+            font-weight: 800
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 16px
+        }
+
+        .pane {
+            animation: fade .5s
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(12px)
+            }
+        }
+
+        /* structured vs unstructured */
+        .sv {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px
+        }
+
+        .sv b {
+            background: rgba(91, 140, 255, .2);
+            border-radius: 6px;
+            padding: 4px;
+            text-align: center;
+            font-size: .8rem;
+            font-weight: 500
+        }
+
+        .sv b.h {
+            background: var(--a);
+            font-weight: 700
+        }
+
+        .blobs {
+            position: relative;
+            height: 150px
+        }
+
+        .blobs span {
+            position: absolute;
+            font-size: 1.8rem;
+            animation: fl 6s ease-in-out infinite
+        }
+
+        /* charts */
+        .chart {
+            height: 230px;
+            display: flex;
+            align-items: flex-end;
+            gap: 14px;
+            padding: 26px 6px 0;
+            border-bottom: 2px solid var(--line)
+        }
+
+        .chart .bar {
+            flex: 1;
+            border-radius: 10px 10px 0 0;
+            background: var(--grad);
+            height: 0;
+            transition: height 1s cubic-bezier(.2, .7, .2, 1);
+            position: relative
+        }
+
+        .chart .bar::after {
+            content: attr(data-v);
+            position: absolute;
+            top: -22px;
+            width: 100%;
+            text-align: center;
+            font-size: .8rem
+        }
+
+        .chart-x {
+            display: flex;
+            gap: 14px;
+            padding: 6px;
+            font-size: .8rem;
+            color: var(--muted)
+        }
+
+        .chart-x span {
+            flex: 1;
+            text-align: center
+        }
+
+        svg text {
+            fill: var(--muted);
+            font-size: 11px
+        }
+
+        .draw {
+            stroke-dasharray: 700;
+            stroke-dashoffset: 700;
+            transition: stroke-dashoffset 2s ease
+        }
+
+        /* four v */
+        .v4 .card {
+            min-height: 230px
+        }
+
+        .vol {
+            display: flex;
+            align-items: flex-end;
+            gap: 3px;
+            height: 70px;
+            margin-top: 10px
+        }
+
+        .vol i {
+            flex: 1;
+            background: var(--a);
+            border-radius: 3px;
+            animation: grow 2.4s ease-in-out infinite alternate
+        }
+
+        @keyframes grow {
+            from {
+                height: 8%
+            }
+
+            to {
+                height: 100%
+            }
+        }
+
+        .vel {
+            position: relative;
+            height: 70px;
+            overflow: hidden;
+            margin-top: 10px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .04)
+        }
+
+        .vel i {
+            position: absolute;
+            left: -10%;
+            width: 30px;
+            height: 4px;
+            border-radius: 4px;
+            background: var(--b);
+            animation: rush 1.4s linear infinite;
+            box-shadow: 0 0 10px var(--b)
+        }
+
+        @keyframes rush {
+            to {
+                left: 110%
+            }
+        }
+
+        .var {
+            display: flex;
+            gap: 10px;
+            font-size: 1.7rem;
+            margin-top: 14px;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .var span {
+            animation: fl 4s ease-in-out infinite
+        }
+
+        .ver {
+            margin-top: 12px
+        }
+
+        .noisy {
+            height: 70px;
+            border-radius: 12px;
+            background: repeating-linear-gradient(90deg, rgba(52, 211, 153, .5) 0 6px, transparent 6px 12px);
+            transition: filter .2s, opacity .2s
+        }
+
+        /* benefits */
+        .ben {
+            text-align: center
+        }
+
+        .ben .e {
+            font-size: 2.8rem;
+            display: block;
+            transition: .4s
+        }
+
+        .ben:hover .e {
+            transform: scale(1.3) rotate(-8deg)
+        }
+
+        /* pipeline */
+        .pipe {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            flex-wrap: wrap;
+            justify-content: center
+        }
+
+        .stage {
+            flex: 1 1 220px;
+            text-align: center;
+            padding: 26px 16px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            position: relative;
+            z-index: 1
+        }
+
+        .stage .num {
+            font-size: 2.8rem
+        }
+
+        .belt {
+            flex: 0 0 70px;
+            position: relative;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            min-height: 30px
+        }
+
+        .belt::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 3px;
+            background: repeating-linear-gradient(90deg, var(--b) 0 8px, transparent 8px 16px);
+            animation: belt 1s linear infinite
+        }
+
+        .belt i {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            background: var(--e);
+            animation: pk 2s linear infinite;
+            top: calc(50% - 6px)
+        }
+
+        @keyframes belt {
+            to {
+                background-position: 16px 0
+            }
+        }
+
+        @keyframes pk {
+            from {
+                left: -10%
+            }
+
+            to {
+                left: 100%
+            }
+        }
+
+        /* formats */
+        pre {
+            background: #030617;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 18px;
+            overflow-x: auto;
+            font-size: .9rem;
+            line-height: 1.6;
+            color: #b9f6ca
+        }
+
+        .k {
+            color: #7dd3fc
+        }
+
+        .s {
+            color: #fcd34d
+        }
+
+        code {
+            font-family: ui-monospace, Menlo, Consolas, monospace;
+            color: var(--b)
+        }
+
+        /* pivot */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .93rem
+        }
+
+        th,
+        td {
+            padding: 9px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--line)
+        }
+
+        th {
+            color: var(--b)
+        }
+
+        td .mini {
+            display: inline-block;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--grad);
+            vertical-align: middle;
+            margin-left: 8px;
+            transition: width .6s
+        }
+
+        /* AI */
+        .rings {
+            position: relative;
+            height: 320px;
+            display: grid;
+            place-items: center
+        }
+
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            display: grid;
+            place-items: start center;
+            padding-top: 14px;
+            font-weight: 700;
+            border: 2px solid;
+            transition: .4s;
+            font-size: .9rem;
+            text-align: center
+        }
+
+        .ring.r1 {
+            width: 310px;
+            height: 310px;
+            border-color: var(--a);
+            background: rgba(91, 140, 255, .1)
+        }
+
+        .ring.r2 {
+            width: 220px;
+            height: 220px;
+            border-color: var(--c);
+            background: rgba(167, 139, 250, .14)
+        }
+
+        .ring.r3 {
+            width: 130px;
+            height: 130px;
+            border-color: var(--d);
+            background: rgba(244, 114, 182, .18)
+        }
+
+        .ring:hover {
+            transform: scale(1.05)
+        }
+
+        canvas {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, .03);
+            border: 1px solid var(--line);
+            cursor: crosshair;
+            touch-action: manipulation;
+            display: block
+        }
+
+        .mlt {
+            cursor: pointer
+        }
+
+        .mlt .vis {
+            height: 120px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, .04);
+            margin: 12px 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.6rem;
+            flex-wrap: wrap
+        }
+
+        .mlt .mx {
+            display: none;
+            color: var(--muted);
+            font-size: .93rem
+        }
+
+        .mlt.on .mx {
+            display: block;
+            animation: fade .4s
+        }
+
+        .mlt .arr {
+            color: var(--b);
+            font-size: .85rem;
+            font-weight: 700
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            display: inline-block;
+            position: absolute;
+            transition: all 1.2s ease
+        }
+
+        .ff {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+        }
+
+        .ff .card {
+            font-size: .95rem
+        }
+
+        .fact {
+            border-top: 3px solid var(--f)
+        }
+
+        .fic {
+            border-top: 3px solid var(--d)
+        }
+
+        .tagf {
+            font-weight: 800;
+            font-size: .75rem;
+            letter-spacing: .1em
+        }
+
+        .fact .tagf {
+            color: var(--f)
+        }
+
+        .fic .tagf {
+            color: var(--d)
+        }
+
+        /* chain */
+        .chain {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            align-items: center
+        }
+
+        .chain span {
+            padding: 12px 18px;
+            border-radius: 99px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            transition: .3s
+        }
+
+        .chain span:hover {
+            background: var(--a);
+            transform: translateY(-6px) scale(1.06)
+        }
+
+        .chain em {
+            color: var(--muted);
+            font-style: normal
+        }
+
+        footer {
+            text-align: center;
+            color: var(--muted);
+            padding: 80px 20px 50px;
+            font-size: .88rem
+        }
+
+        @media(max-width:820px) {
+            .hero .wrap {
+                grid-template-columns: 1fr
+            }
+
+            .scene {
+                height: 300px;
+                transform: scale(.85)
+            }
+
+            .dots {
+                display: none
+            }
+
+            section {
+                padding-top: 80px
+            }
+
+            .belt {
+                flex-basis: 40px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important
+            }
+
+            .rv {
+                opacity: 1;
+                transform: none
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <div id="progress"></div>
+    <nav class="dots" aria-label="Sections"></nav>
 
-<header class="hero">
-  <h1>Data Science Fundamentals: From Raw Data to Insight and AI</h1>
-  <div class="meta">Study notes from the Cisco Networking Academy Data Science course (Virtual University) · by Umer Aziz</div>
-  <div class="abstract-tags">
-    <span>Data Types</span><span>Big Data</span><span>Data Pipelines</span><span>Visualization</span><span>AI &amp; ML</span>
-  </div>
-</header>
+    <header class="hero" id="top">
+        <div class="float" style="width:90px;height:90px;background:var(--a);left:6%;top:18%"></div>
+        <div class="float" style="width:50px;height:50px;background:var(--d);left:48%;top:75%;animation-delay:-3s">
+        </div>
+        <div class="float" style="width:70px;height:70px;background:var(--b);right:8%;top:10%;animation-delay:-5s">
+        </div>
+        <div class="wrap">
+            <div>
+                <div class="eyebrow">Cisco Networking Academy · Data Science</div>
+                <h1>From <span>raw data</span> to insight and AI</h1>
+                <p>An interactive visual guide to what I learned in the Cisco data science course: where data comes
+                    from, how it is stored and moved, how we visualise it, and how machines learn from it.</p>
+                <div class="chips"><span class="chip">Data types</span><span class="chip">Big data</span><span
+                        class="chip">Pipelines</span><span class="chip">Visualization</span><span class="chip">AI &amp;
+                        ML</span></div>
+                <a class="btn" href="#sources">Start exploring ↓</a>
+            </div>
+            <div class="scene" id="scene">
+                <div class="orbit"><i></i></div>
+                <div class="cube">
+                    <div class="f1">📊</div>
+                    <div class="f2">🧠</div>
+                    <div class="f3">🗄️</div>
+                    <div class="f4">📈</div>
+                    <div class="f5">🤖</div>
+                    <div class="f6">🌐</div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<main>
-<article>
+    <main>
 
-<section class="abstract">
-  <div class="label">Abstract</div>
-  <p>This paper summarises what I learned in the Cisco Networking Academy data science and analytics course. It explains what data is and where it comes from, how data is classified, why big data changes how infrastructure must be built, how a data pipeline moves data from source to storage, which file formats are used, and how data feeds machine learning and artificial intelligence. Each section ends with the practical takeaway for an aspiring data scientist.</p>
-</section>
+        <section id="sources" data-t="Data sources">
+            <div class="wrap">
+                <div class="eyebrow rv">01 · What data is</div>
+                <h2 class="rv">Everything we do creates data</h2>
+                <p class="lead rv">Every form we fill, every post we publish and every behaviour we show online is
+                    recorded. We are more connected than ever, so every place we go and everything we do is a new source
+                    of data, and with this volume we can now track, isolate and predict. Hover or tap a card.</p>
+                <div class="grid persp">
+                    <div class="flip rv" tabindex="0">
+                        <div class="flip-in">
+                            <div class="face front"><span class="big">📝</span>
+                                <h3>Volunteered</h3><small>Hover to flip</small>
+                            </div>
+                            <div class="face back">
+                                <h3>Volunteered data</h3>
+                                <p>Data you knowingly share: sign-up forms, surveys, profiles, posts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip rv d1" tabindex="0">
+                        <div class="flip-in">
+                            <div class="face front"><span class="big">👁️</span>
+                                <h3>Observed</h3><small>Hover to flip</small>
+                            </div>
+                            <div class="face back">
+                                <h3>Observed data</h3>
+                                <p>Captured by watching behaviour: clicks, location, purchases, device usage.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flip rv d2" tabindex="0">
+                        <div class="flip-in">
+                            <div class="face front"><span class="big">🔮</span>
+                                <h3>Inferred</h3><small>Hover to flip</small>
+                            </div>
+                            <div class="face back">
+                                <h3>Inferred data</h3>
+                                <p>Derived from other data: predicted interests, credit scores, recommendations.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="take rv"><b>Takeaway:</b> know whether data is volunteered, observed or inferred. It affects
+                    accuracy, privacy and ethics.</div>
+            </div>
+        </section>
 
-<nav class="toc" aria-label="Table of contents">
-  <h2>Contents</h2>
-  <ol>
-    <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#what-is-data">What data actually is</a></li>
-    <li><a href="#types-of-data">Types of data</a></li>
-    <li><a href="#structured-unstructured">Structured vs unstructured data</a></li>
-    <li><a href="#visualization">Data visualization</a></li>
-    <li><a href="#big-data">Big data and the four Vs</a></li>
-    <li><a href="#benefits">Benefits of data growth</a></li>
-    <li><a href="#pipelines">Data pipelines</a></li>
-    <li><a href="#formats">CSV, JSON and XML</a></li>
-    <li><a href="#analytics">Analytics for business and humanity</a></li>
-    <li><a href="#excel">Pivot tables and charts in Excel</a></li>
-    <li><a href="#ai-ml">AI and machine learning</a></li>
-    <li><a href="#conclusion">Conclusion</a></li>
-  </ol>
-</nav>
+        <section id="types" data-t="Types of data">
+            <div class="wrap">
+                <div class="eyebrow rv">02 · Types of data</div>
+                <h2 class="rv">Count it or measure it?</h2>
+                <p class="lead rv">Data is quantitative (numbers) or qualitative (descriptions). Quantitative data is
+                    either discrete, collected by counting, or continuous, collected by measuring.</p>
+                <div class="card rv" style="margin-bottom:20px">
+                    <div class="tree">
+                        <div class="node top">Data</div>
+                        <div class="link"></div>
+                        <div class="row">
+                            <div class="node q">Quantitative (numbers)</div>
+                            <div class="node n">Qualitative (descriptions)</div>
+                        </div>
+                        <div class="link"></div>
+                        <div class="row">
+                            <div class="node" style="border-color:var(--e)">Discrete = counting</div>
+                            <div class="node" style="border-color:var(--f)">Continuous = measuring</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo">
+                    <div class="card tilt rv">
+                        <h3>🚲 Discrete: the number of bicycles sold</h3>
+                        <p style="color:var(--muted)">Whole, concrete numbers. Add a sale. You can’t sell 2.5 bikes.</p>
+                        <div class="bikes" id="bikes"></div>
+                        <button class="sm" id="addBike">+ Sell a bike</button> <button class="sm"
+                            id="resetBike">Reset</button>
+                        <div class="big-n" id="bikeN">0</div>
+                    </div>
+                    <div class="card tilt rv d1">
+                        <h3>🌡️ Continuous: temperature in the store</h3>
+                        <p style="color:var(--muted)">Measured, so any value in a range is possible. Drag the slider.
+                        </p>
+                        <div class="thermo"><i id="thI" style="left:50%"></i></div>
+                        <input type="range" id="thR" min="10" max="40" step="0.1" value="25" aria-label="Temperature">
+                        <div class="big-n"><span id="thV">25.0</span> °C</div>
+                    </div>
+                </div>
+                <h3 class="rv" style="margin-top:34px">Programming data types</h3>
+                <div class="grid rv" style="margin-top:12px">
+                    <div class="card"><b>String</b><br><code>"Karachi"</code><br><small
+                            style="color:var(--muted)">text</small></div>
+                    <div class="card"><b>Integer</b><br><code>42</code><br><small style="color:var(--muted)">whole
+                            number</small></div>
+                    <div class="card"><b>Float</b><br><code>36.6</code><br><small style="color:var(--muted)">decimal
+                            number</small></div>
+                    <div class="card"><b>Boolean</b><br><code>true / false</code><br><small
+                            style="color:var(--muted)">yes or no</small></div>
+                </div>
+                <div class="take rv"><b>Takeaway:</b> the right type decides which chart, statistic and model you can
+                    use.</div>
+            </div>
+        </section>
 
-<section id="introduction">
-  <h2>1. Introduction</h2>
-  <p>Data science is the practice of collecting, managing, analysing and communicating data to support better decisions. Companies such as Cisco employ teams of “data crunchers” (including interns) who turn raw data into insight. The course covers the fundamentals: how data is collected, stored and used, how it is engineered for analytics, and how it powers AI.</p>
-</section>
+        <section id="structure" data-t="Structured data">
+            <div class="wrap">
+                <div class="eyebrow rv">03 · Variety of data</div>
+                <h2 class="rv">Tidy tables vs messy real life</h2>
+                <p class="lead rv">Structured data fits neatly in rows and columns and lives in relational databases.
+                    Unstructured data (photos, video, emails, posts) has no fixed shape and is often kept in
+                    non-relational (NoSQL) databases.</p>
+                <div class="demo">
+                    <div class="card tilt rv">
+                        <h3>🗂️ Structured · relational database</h3>
+                        <div class="sv" style="margin:12px 0"><b class="h">ID</b><b class="h">Name</b><b
+                                class="h">City</b><b class="h">Age</b>
+                            <b>1</b><b>Ali</b><b>Lahore</b><b>21</b><b>2</b><b>Sara</b><b>Karachi</b><b>24</b><b>3</b><b>Omar</b><b>Multan</b><b>30</b>
+                        </div>
+                        <p style="color:var(--muted)">Fixed schema. Easy to search with SQL (MySQL, PostgreSQL).</p>
+                    </div>
+                    <div class="card tilt rv d1">
+                        <h3>🌪️ Unstructured · NoSQL / data lake</h3>
+                        <div class="blobs"><span style="left:5%;top:10%">📷</span><span
+                                style="left:35%;top:55%;animation-delay:-1s">🎵</span><span
+                                style="left:60%;top:5%;animation-delay:-2s">✉️</span><span
+                                style="left:80%;top:60%;animation-delay:-3s">🎬</span><span
+                                style="left:20%;top:70%;animation-delay:-4s">💬</span><span
+                                style="left:50%;top:30%;animation-delay:-5s">📄</span></div>
+                        <p style="color:var(--muted)">No fixed format. Rich but harder to analyse (MongoDB, Cassandra).
+                        </p>
+                    </div>
+                </div>
+                <div class="take rv"><b>Also:</b> JSON and XML are semi-structured: they have keys or tags but no rigid
+                    table.</div>
+            </div>
+        </section>
 
-<section id="what-is-data">
-  <h2>2. What Data Actually Is</h2>
-  <p>Data is any recorded fact, measurement or observation. Every form we fill in, every post we publish and every behaviour we show online produces data. Data is created in three main ways:</p>
-  <div class="grid">
-    <div class="box"><h3>Volunteered</h3><p>Data people knowingly share: sign-up forms, surveys, profiles, posts.</p></div>
-    <div class="box alt"><h3>Observed</h3><p>Data captured by watching behaviour: clicks, location, purchases, device usage.</p></div>
-    <div class="box"><h3>Inferred</h3><p>Data derived from other data: predicted interests, credit scores, recommendations.</p></div>
-  </div>
-  <h3>Data in daily life</h3>
-  <p>We are more connected than ever. Everywhere we go and everything we do becomes a new source of data. On social media, our decisions, and even what we are about to buy, can be connected and analysed. Because of the sheer volume of data now available, organisations can track, isolate and predict behaviour at a scale that was impossible before.</p>
-  <div class="callout"><strong>Takeaway:</strong> know whether data is volunteered, observed or inferred. It affects accuracy, privacy and ethics.</div>
-</section>
+        <section id="viz" data-t="Visualization">
+            <div class="wrap">
+                <div class="eyebrow rv">04 · Data visualization</div>
+                <h2 class="rv">Choose the chart that tells the story</h2>
+                <p class="lead rv">Charts turn raw data into easy-to-understand shapes that highlight trends and
+                    patterns. Match the chart to the story. Not every chart fits every dataset. Pick a goal:</p>
+                <div class="card rv">
+                    <div class="tabs" id="vizTabs">
+                        <button class="sm on" data-c="line">📈 Change over time</button>
+                        <button class="sm" data-c="bar">📊 Compare categories</button>
+                        <button class="sm" data-c="pie">🥧 Parts of a whole</button>
+                        <button class="sm" data-c="scatter">✨ Relationship</button>
+                    </div>
+                    <div id="vizOut" style="min-height:260px"></div>
+                    <p id="vizNote" style="color:var(--muted);margin-top:10px"></p>
+                </div>
+                <h3 class="rv" style="margin-top:30px">Four factors when choosing</h3>
+                <div class="grid rv" style="margin-top:12px">
+                    <div class="card tilt"><b>🔢 Variables</b>
+                        <p style="color:var(--muted)">How many characteristics are measured.</p>
+                    </div>
+                    <div class="card tilt"><b>📦 Data points</b>
+                        <p style="color:var(--muted)">The volume of information in each variable.</p>
+                    </div>
+                    <div class="card tilt"><b>⏱️ Time</b>
+                        <p style="color:var(--muted)">Does the data track change (hourly, daily…)?</p>
+                    </div>
+                    <div class="card tilt"><b>🔗 Relationships</b>
+                        <p style="color:var(--muted)">Do you need to compare or correlate points?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<section id="types-of-data">
-  <h2>3. Types of Data</h2>
-  <p>Data is first split into <strong>quantitative</strong> (numbers that can be measured or counted) and <strong>qualitative</strong> (descriptions and categories such as colour, opinion or name). Quantitative data is then either discrete or continuous.</p>
-  <div class="vs">
-    <div class="box">
-      <h3>Discrete data</h3>
-      <p>Collected by <em>counting</em>. Whole, concrete numbers, usually described as “the number of…”.</p>
-      <ul>
-        <li>Customers who bought bicycles</li>
-        <li>Employees in each department</li>
-        <li>Litres of diesel purchased each week for a delivery truck</li>
-      </ul>
-    </div>
-    <div class="box alt">
-      <h3>Continuous data</h3>
-      <p>Collected by <em>measuring</em>. Values fluctuate and can take any value in a range.</p>
-      <ul>
-        <li>Temperature inside the store</li>
-        <li>Speed of a rider in a race</li>
-        <li>Distance travelled by a moving bicycle</li>
-      </ul>
-    </div>
-  </div>
-  <h3>Programming data types</h3>
-  <p>When data is stored or processed, each value has a technical type:</p>
-  <div class="table-wrap">
-  <table>
-    <thead><tr><th>Type</th><th>Meaning</th><th>Example</th></tr></thead>
-    <tbody>
-      <tr><td>String</td><td>Text</td><td><code>"Karachi"</code></td></tr>
-      <tr><td>Integer</td><td>Whole number</td><td><code>42</code></td></tr>
-      <tr><td>Float</td><td>Decimal number</td><td><code>36.6</code></td></tr>
-      <tr><td>Boolean</td><td>True or false</td><td><code>true</code></td></tr>
-      <tr><td>Date/time</td><td>A point in time</td><td><code>2026-10-08</code></td></tr>
-    </tbody>
-  </table>
-  </div>
-  <div class="callout"><strong>Takeaway:</strong> choosing the correct type decides which chart, statistic and model you can use.</div>
-</section>
+        <section id="bigdata" data-t="Big data">
+            <div class="wrap">
+                <div class="eyebrow rv">05 · Big data</div>
+                <h2 class="rv">The four Vs</h2>
+                <p class="lead rv">Big data’s characteristics change how data is collected, transmitted, stored and
+                    accessed. Each V creates a challenge for data infrastructure engineers.</p>
+                <div class="grid v4 persp">
+                    <div class="card tilt rv">
+                        <h3>📦 Volume</h3>
+                        <p style="color:var(--muted)">How much data. Needs scalable, distributed storage.</p>
+                        <div class="vol" id="vol"></div>
+                    </div>
+                    <div class="card tilt rv d1">
+                        <h3>⚡ Velocity</h3>
+                        <p style="color:var(--muted)">How fast it arrives and must be processed.</p>
+                        <div class="vel" id="vel"></div>
+                    </div>
+                    <div class="card tilt rv d2">
+                        <h3>🎨 Variety</h3>
+                        <p style="color:var(--muted)">Many formats and sources.</p>
+                        <div class="var"><span>📝</span><span style="animation-delay:-1s">🖼️</span><span
+                                style="animation-delay:-2s">🎥</span><span style="animation-delay:-3s">📡</span><span
+                                style="animation-delay:-.5s">🧾</span></div>
+                    </div>
+                    <div class="card tilt rv d3">
+                        <h3>🔍 Veracity</h3>
+                        <p style="color:var(--muted)">How trustworthy or uncertain. Drag to add noise.</p>
+                        <div class="ver">
+                            <div class="noisy" id="noisy"></div><input type="range" id="noiseR" min="0" max="100"
+                                value="0" aria-label="Uncertainty"><small id="noiseT" style="color:var(--f)">Clean,
+                                reliable data</small>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="rv" style="margin-top:36px">The potential benefits of data growth</h3>
+                <div class="grid rv" style="margin-top:12px">
+                    <div class="card ben tilt"><span class="e">🏥</span><b>Healthcare</b>
+                        <p style="color:var(--muted)">Earlier detection, personalised treatment.</p>
+                    </div>
+                    <div class="card ben tilt"><span class="e">🛒</span><b>Retail</b>
+                        <p style="color:var(--muted)">Demand forecasts and recommendations.</p>
+                    </div>
+                    <div class="card ben tilt"><span class="e">🚦</span><b>Transport</b>
+                        <p style="color:var(--muted)">Live routing, predictive maintenance.</p>
+                    </div>
+                    <div class="card ben tilt"><span class="e">🌾</span><b>Agriculture &amp; climate</b>
+                        <p style="color:var(--muted)">Better yields, early warnings.</p>
+                    </div>
+                </div>
+                <div class="take rv"><b>Takeaway:</b> veracity is the V analysts forget. Bad data in means bad decisions
+                    out.</div>
+            </div>
+        </section>
 
-<section id="structured-unstructured">
-  <h2>4. Structured vs Unstructured Data</h2>
-  <div class="vs">
-    <div class="box">
-      <h3>Structured</h3>
-      <p>Organised in rows and columns with a fixed schema, e.g. spreadsheets and SQL tables. Easy to search and analyse. Stored in <strong>relational databases</strong> (MySQL, PostgreSQL).</p>
-    </div>
-    <div class="box alt">
-      <h3>Unstructured</h3>
-      <p>No fixed format: emails, images, video, audio, social posts. Harder to analyse but very rich. Often stored in <strong>non-relational (NoSQL) databases</strong> (MongoDB, Cassandra) or data lakes.</p>
-    </div>
-  </div>
-  <p>Semi-structured data, such as JSON and XML, sits between the two: it has tags or keys but no rigid table.</p>
-</section>
+        <section id="pipeline" data-t="Pipelines">
+            <div class="wrap">
+                <div class="eyebrow rv">06 · Managing big data</div>
+                <h2 class="rv">The data pipeline</h2>
+                <p class="lead rv">A pipeline moves data reliably from where it is created to where it is used, in three
+                    phases: ingestion, transformation and storage.</p>
+                <div class="pipe rv">
+                    <div class="stage tilt">
+                        <div class="num">📥</div>
+                        <h3>1 · Ingestion</h3>
+                        <p style="color:var(--muted)">Collect from apps, sensors, databases and APIs, in batches or
+                            streams.</p>
+                    </div>
+                    <div class="belt"><i></i><i style="animation-delay:-1s"></i></div>
+                    <div class="stage tilt">
+                        <div class="num">🧹</div>
+                        <h3>2 · Transformation</h3>
+                        <p style="color:var(--muted)">Clean, filter, validate, reformat and combine.</p>
+                    </div>
+                    <div class="belt"><i></i><i style="animation-delay:-1s"></i></div>
+                    <div class="stage tilt">
+                        <div class="num">🏛️</div>
+                        <h3>3 · Storage</h3>
+                        <p style="color:var(--muted)">Keep in a database, warehouse or data lake for analysts and
+                            models.</p>
+                    </div>
+                </div>
+                <div class="take rv"><b>Takeaway:</b> data scientists often spend most of their time in the
+                    transformation (cleaning) phase.</div>
 
-<section id="visualization">
-  <h2>5. Data Visualization</h2>
-  <p><strong>Purpose.</strong> Charts and graphs transform raw data into easy-to-understand formats that highlight trends and patterns. A table gives exact values; a graph shows the shape of the story.</p>
-  <p><strong>Selection.</strong> Match the chart to the pattern you want to show. Not every chart fits every dataset.</p>
-  <h3>Four factors when choosing a chart</h3>
-  <div class="grid">
-    <div class="box"><h3>Variables</h3><p>How many characteristics are measured.</p></div>
-    <div class="box"><h3>Data points</h3><p>The volume of information within each variable.</p></div>
-    <div class="box"><h3>Time</h3><p>Whether the data tracks change over time (hourly, daily…).</p></div>
-    <div class="box"><h3>Relationships</h3><p>Whether you need to compare or correlate data points.</p></div>
-  </div>
-  <div class="table-wrap">
-  <table>
-    <thead><tr><th>Goal</th><th>Best chart</th></tr></thead>
-    <tbody>
-      <tr><td>Change over time</td><td>Line chart</td></tr>
-      <tr><td>Compare categories</td><td>Bar / column chart</td></tr>
-      <tr><td>Parts of a whole</td><td>Pie or stacked bar (few categories only)</td></tr>
-      <tr><td>Relationship between two variables</td><td>Scatter plot</td></tr>
-      <tr><td>Distribution of values</td><td>Histogram or box plot</td></tr>
-    </tbody>
-  </table>
-  </div>
-</section>
+                <h3 class="rv" style="margin-top:40px">Data formats: CSV, JSON, XML</h3>
+                <div class="card rv" style="margin-top:12px">
+                    <div class="tabs" id="fmtTabs"><button class="sm on" data-f="csv">CSV</button><button class="sm"
+                            data-f="json">JSON</button><button class="sm" data-f="xml">XML</button></div>
+                    <pre id="fmtOut"></pre>
+                    <p id="fmtNote" style="color:var(--muted);margin-top:10px"></p>
+                </div>
+            </div>
+        </section>
 
-<section id="big-data">
-  <h2>6. Big Data and the Four Vs</h2>
-  <p>Big data’s characteristics change how data is collected, transmitted, stored and accessed. The four Vs describe those characteristics and the challenges they create for data infrastructure engineers.</p>
-  <div class="grid">
-    <div class="box"><h3>Volume</h3><p>The amount of data. Terabytes to zettabytes need scalable, distributed storage.</p></div>
-    <div class="box alt"><h3>Velocity</h3><p>The speed at which data is created and must be processed, sometimes in real time.</p></div>
-    <div class="box"><h3>Variety</h3><p>Many formats and sources: text, sensors, images, logs, transactions.</p></div>
-    <div class="box alt"><h3>Veracity</h3><p>The trustworthiness and uncertainty of data: errors, bias, missing values.</p></div>
-  </div>
-  <div class="callout"><strong>Takeaway:</strong> veracity is the one analysts forget. Bad data in means bad decisions out.</div>
-</section>
+        <section id="analytics" data-t="Analytics">
+            <div class="wrap">
+                <div class="eyebrow rv">07 · Analytics in action</div>
+                <h2 class="rv">Business insight and humanitarian impact</h2>
+                <div class="grid" style="margin-bottom:34px">
+                    <div class="card tilt rv">
+                        <h3>💼 Business understanding</h3>
+                        <p style="color:var(--muted)">Start with a clear business question. Analytics helps with
+                            customer behaviour, sales trends, cost reduction and risk.</p>
+                    </div>
+                    <div class="card tilt rv d1">
+                        <h3>🤝 Humanitarian insights</h3>
+                        <p style="color:var(--muted)">Tracking disease outbreaks, mapping disaster damage and directing
+                            relief where it is needed most.</p>
+                    </div>
+                </div>
+                <h3 class="rv">🍦 Mini pivot table: ice cream shop (sample data)</h3>
+                <p class="lead rv" style="margin-bottom:14px">A pivot table summarises big tables by grouping and adding
+                    up. In my lab I built pivot tables and charts for an ice cream business. Switch what to group by:
+                </p>
+                <div class="card rv">
+                    <div class="tabs" id="pvTabs"><button class="sm on" data-g="flavor">Group by flavour</button><button
+                            class="sm" data-g="month">Group by month</button></div>
+                    <table id="pvT"></table>
+                    <p style="color:var(--muted);margin-top:10px;font-size:.88rem">Illustrative numbers, not the real
+                        lab data.</p>
+                </div>
+            </div>
+        </section>
 
-<section id="benefits">
-  <h2>7. The Potential Benefits of Data Growth</h2>
-  <p>More data, handled well, creates value in everyday life:</p>
-  <ul>
-    <li><strong>Healthcare:</strong> earlier disease detection and personalised treatment.</li>
-    <li><strong>Retail:</strong> demand forecasting and personalised recommendations.</li>
-    <li><strong>Transport:</strong> live traffic routing and predictive maintenance.</li>
-    <li><strong>Agriculture and climate:</strong> better yields and early disaster warnings.</li>
-    <li><strong>Public services:</strong> smarter planning and humanitarian response.</li>
-  </ul>
-</section>
+        <section id="ai" data-t="AI &amp; ML">
+            <div class="wrap">
+                <div class="eyebrow rv">08 · Artificial intelligence</div>
+                <h2 class="rv">AI, machine learning and you</h2>
+                <div class="demo">
+                    <div class="rings rv">
+                        <div class="ring r1">Artificial Intelligence</div>
+                        <div class="ring r2" style="margin-top:50px">Machine Learning</div>
+                        <div class="ring r3" style="margin-top:110px">Deep learning</div>
+                    </div>
+                    <div class="card rv d1">
+                        <h3>What is machine learning?</h3>
+                        <p style="color:var(--muted)">AI is the broad goal of machines doing tasks that need human
+                            intelligence. Machine learning is a subset where <b>algorithms learn patterns from data</b>
+                            instead of following hand-written rules. A <b>classifier</b> is an algorithm that sorts new
+                            items into categories.</p>
+                    </div>
+                </div>
 
-<section id="pipelines">
-  <h2>8. Data Pipelines</h2>
-  <p>Managing big data means moving it reliably from where it is created to where it is used. A data pipeline has three phases:</p>
-  <div class="pipeline">
-    <div class="step"><b>1. Ingestion</b>Collect data from apps, sensors, databases and APIs, in batches or streams.</div>
-    <div class="arrow">→</div>
-    <div class="step"><b>2. Transformation</b>Clean, filter, validate, reformat and combine data so it is analysis-ready.</div>
-    <div class="arrow">→</div>
-    <div class="step"><b>3. Storage</b>Save in a database, data warehouse or data lake for analysts and models.</div>
-  </div>
-  <div class="callout"><strong>Takeaway:</strong> data scientists often spend most of their time on the transformation (cleaning) phase.</div>
-</section>
+                <h3 class="rv" style="margin-top:36px">Types of machine learning analysis</h3>
+                <p class="lead rv" style="margin:8px 0 14px">Tap a card to see how each one works.</p>
+                <div class="grid persp">
+                    <div class="card tilt mlt rv" tabindex="0">
+                        <h3>🏷️ Supervised</h3>
+                        <div class="vis"><span>🐱</span><span class="arr">+ label “cat” →</span><span>🧠</span><span
+                                class="arr">→</span><span>🐶?</span></div>
+                        <p class="mx">Learns from <b>labelled examples</b> (inputs with the right answer) then predicts
+                            labels for new data. Used for classification (spam or not) and regression (house price).</p>
+                    </div>
+                    <div class="card tilt mlt rv d1" tabindex="0">
+                        <h3>🔎 Unsupervised</h3>
+                        <div class="vis" id="uns"><i class="dot" style="background:var(--a);left:20%;top:30%"></i><i
+                                class="dot" style="background:var(--d);left:70%;top:60%"></i><i class="dot"
+                                style="background:var(--a);left:60%;top:20%"></i><i class="dot"
+                                style="background:var(--d);left:30%;top:70%"></i><i class="dot"
+                                style="background:var(--a);left:80%;top:75%"></i><i class="dot"
+                                style="background:var(--d);left:45%;top:45%"></i></div>
+                        <p class="mx">Gets <b>no labels</b> and finds hidden structure on its own, such as grouping
+                            customers with similar behaviour (clustering).</p>
+                    </div>
+                    <div class="card tilt mlt rv d2" tabindex="0">
+                        <h3>🎮 Reinforcement</h3>
+                        <div class="vis"><span>🤖</span><span class="arr">action →</span><span>🌍</span><span
+                                class="arr">← reward</span></div>
+                        <p class="mx">An agent learns by <b>trial and error</b>, getting rewards for good actions and
+                            penalties for bad ones. Used in game AI and robotics.</p>
+                    </div>
+                </div>
 
-<section id="formats">
-  <h2>9. Data Formats: CSV, JSON and XML</h2>
-  <div class="table-wrap">
-  <table>
-    <thead><tr><th>Format</th><th>Description</th><th>Best for</th></tr></thead>
-    <tbody>
-      <tr><td>CSV</td><td>Comma-separated plain-text rows</td><td>Simple tables, spreadsheets</td></tr>
-      <tr><td>JSON</td><td>Key-value pairs, lightweight</td><td>Web APIs, apps</td></tr>
-      <tr><td>XML</td><td>Nested custom tags</td><td>Documents, enterprise systems</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <p>The same record in each format:</p>
-<pre><code>CSV:   name,age
-       Ali,21
+                <h3 class="rv" style="margin-top:36px">🧪 Try a classifier</h3>
+                <p class="lead rv" style="margin:8px 0 12px">Blue and pink dots are known examples (training data).
+                    Click anywhere to add a new point and watch the algorithm (k-nearest neighbours) classify it by its
+                    5 closest neighbours.</p>
+                <div class="card rv"><canvas id="knn" width="800" height="360" aria-label="Classifier demo"></canvas>
+                    <div style="margin-top:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button
+                            class="sm" id="knnReset">Reset</button><span id="knnMsg" style="color:var(--muted)">Click
+                            the canvas.</span></div>
+                </div>
 
-JSON:  {"name": "Ali", "age": 21}
+                <h3 class="rv" style="margin-top:36px">Where AI changes your day</h3>
+                <p class="lead rv" style="margin:8px 0 12px">Select an application to learn how AI is changing
+                    day-to-day activities.</p>
+                <div class="card rv">
+                    <div class="tabs" id="aiTabs">
+                        <button class="sm on" data-a="0">🎬 Entertainment</button><button class="sm" data-a="1">🌾
+                            Agriculture</button><button class="sm" data-a="2">🩺 Medicine</button><button class="sm"
+                            data-a="3">🛍️ Retail</button><button class="sm" data-a="4">🏃 Fitness</button>
+                    </div>
+                    <div id="aiOut"></div>
+                </div>
 
-XML:   &lt;person&gt;&lt;name&gt;Ali&lt;/name&gt;&lt;age&gt;21&lt;/age&gt;&lt;/person&gt;</code></pre>
-</section>
+                <h3 class="rv" style="margin-top:36px">AI: fact and fiction</h3>
+                <div class="ff rv" style="margin-top:12px">
+                    <div class="card fact tilt">
+                        <div class="tagf">FACT</div>AI is already used in search, translation, fraud detection and
+                        recommendations.
+                    </div>
+                    <div class="card fact tilt">
+                        <div class="tagf">FACT</div>AI quality depends on the quality and quantity of its training data.
+                    </div>
+                    <div class="card fic tilt">
+                        <div class="tagf">FICTION</div>AI “thinks” like a human. Today’s systems find statistical
+                        patterns.
+                    </div>
+                    <div class="card fic tilt">
+                        <div class="tagf">FICTION</div>AI is always objective. It can inherit bias from its data.
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<section id="analytics">
-  <h2>10. Analytics for Business and Humanity</h2>
-  <h3>Business understanding</h3>
-  <p>Analysis starts with a clear business question. Data analytics for business insights helps with customer behaviour, sales trends, cost reduction and risk.</p>
-  <h3>Humanitarian insights</h3>
-  <p>The same techniques support aid and development: tracking disease outbreaks, mapping disaster damage and directing relief where it is needed most.</p>
-</section>
+        <section id="end" data-t="Conclusion">
+            <div class="wrap" style="text-align:center">
+                <div class="eyebrow rv">09 · Conclusion</div>
+                <h2 class="rv">The data science chain</h2>
+                <p class="lead rv" style="margin-inline:auto">Each link depends on the one before it, so quality data
+                    and clear questions matter more than any single tool.</p>
+                <div class="chain rv"><span>🌐 Create</span><em>→</em><span>🏷️ Classify</span><em>→</em><span>📥
+                        Collect</span><em>→</em><span>🏛️ Store</span><em>→</em><span>🔍
+                        Analyse</span><em>→</em><span>📊 Visualise</span><em>→</em><span>🤖 Train AI</span></div>
+                <p class="rv" style="margin-top:40px;color:var(--muted)"><small>Still to add: experience analytics
+                        summary.</small></p>
+            </div>
+        </section>
 
-<section id="excel">
-  <h2>11. Pivot Tables and Charts in Excel</h2>
-  <p>A pivot table summarises large tables by grouping and aggregating (sum, count, average) without writing formulas. A pivot chart visualises that summary.</p>
-  <p>In the lab I built pivot tables and pivot charts for an <strong>ice cream business</strong>, comparing sales by product and period to see what sells best.</p>
-  <p class="todo">Experience analytics summary — to be added.</p>
-</section>
+    </main>
+    <footer>Written by Umer Aziz while studying the Cisco Networking Academy Data Science course · designed with Claude
+    </footer>
 
-<section id="ai-ml">
-  <h2>12. AI and Machine Learning</h2>
-  <div class="vs">
-    <div class="box">
-      <h3>Artificial intelligence (AI)</h3>
-      <p>The broad field of making machines perform tasks that normally need human intelligence: reasoning, language, perception.</p>
-    </div>
-    <div class="box alt">
-      <h3>Machine learning (ML)</h3>
-      <p>A subset of AI where systems learn patterns from data instead of following hand-written rules.</p>
-    </div>
-  </div>
-  <h3>AI: fact and fiction</h3>
-  <ul>
-    <li><strong>Fact:</strong> AI is already used in search, translation, fraud detection and recommendations.</li>
-    <li><strong>Fact:</strong> AI quality depends on the quality and quantity of its training data.</li>
-    <li><strong>Fiction:</strong> AI “thinks” or understands like a human. Current systems find statistical patterns.</li>
-    <li><strong>Fiction:</strong> AI is always objective. It can inherit bias from its data.</li>
-  </ul>
-</section>
+    <script>
+        (function () {
+            var $ = function (s, r) { return (r || document).querySelector(s) }, $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)) };
+            function tabs(sel, fn) { $$(sel + ' button').forEach(function (b) { b.onclick = function () { $$(sel + ' button').forEach(function (x) { x.classList.remove('on') }); b.classList.add('on'); fn(b) } }) }
 
-<section id="conclusion">
-  <h2>13. Conclusion</h2>
-  <p>Data science is a chain: data is created, classified, collected through pipelines, stored, analysed, visualised and finally used to train AI. Each link depends on the one before it, so quality data and clear questions matter more than any single tool.</p>
-</section>
+            /* progress + side dots */
+            var secs = $$('main section'), dots = $('.dots');
+            secs.forEach(function (s) { var a = document.createElement('a'); a.href = '#' + s.id; a.dataset.t = s.dataset.t; a.setAttribute('aria-label', s.dataset.t); dots.appendChild(a) });
+            function onScroll() {
+                var h = document.documentElement, p = h.scrollTop / (h.scrollHeight - h.clientHeight);
+                $('#progress').style.width = (p * 100) + '%';
+                var cur = 0; secs.forEach(function (s, i) { if (s.getBoundingClientRect().top < innerHeight * .5) cur = i });
+                $$('.dots a').forEach(function (a, i) { a.classList.toggle('on', i === cur) });
+                if (h.scrollTop < innerHeight) $('#scene').style.transform = 'translateY(' + (h.scrollTop * .25) + 'px)';
+            }
+            addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
-</article>
-</main>
+            /* reveal on scroll */
+            var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target) } }) }, { threshold: .12 });
+            $$('.rv').forEach(function (el) { io.observe(el) });
 
-<footer>Written by Umer Aziz while studying the Cisco Networking Academy Data Science course · formatted with Claude</footer>
+            /* 3D tilt on mouse */
+            $$('.tilt').forEach(function (el) {
+                el.addEventListener('mousemove', function (e) {
+                    var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+                    if (el.classList.contains('rv') && !el.classList.contains('in')) return;
+                    el.style.transform = 'perspective(800px) rotateY(' + (x * 12) + 'deg) rotateX(' + (-y * 12) + 'deg) translateZ(8px)'
+                });
+                el.addEventListener('mouseleave', function () { el.style.transform = '' });
+            });
+            document.addEventListener('mousemove', function (e) {
+                if (scrollY > innerHeight) return; $('#scene').style.perspectiveOrigin = (50 + (e.clientX / innerWidth - .5) * 40) + '% ' + (50 + (e.clientY / innerHeight - .5) * 40) + '%'
+            });
+            $$('.flip').forEach(function (f) { f.addEventListener('click', function () { f.classList.toggle('on') }) });
+            $$('.mlt').forEach(function (m) { m.addEventListener('click', function () { m.classList.toggle('on') }); m.addEventListener('keydown', function (e) { if (e.key === 'Enter') m.classList.toggle('on') }) });
+            var uns = $('#uns'); if (uns) {
+                uns.parentNode.addEventListener('click', function () {
+                    var on = !uns.dataset.g; uns.dataset.g = on ? '1' : '';
+                    $$('.dot', uns).forEach(function (d, i) { var A = i % 2 === 0; d.style.left = on ? (A ? (15 + i * 4) + '%' : (70 + i * 3) + '%') : ''; d.style.top = on ? (A ? (30 + i * 6) + '%' : (35 + i * 6) + '%') : '' })
+                })
+            }
+
+            /* discrete */
+            var n = 0; function bikes() { $('#bikes').innerHTML = Array(n + 1).join('<span>🚲</span>'); $('#bikeN').textContent = n }
+            $('#addBike').onclick = function () { if (n < 20) { n++; bikes() } }; $('#resetBike').onclick = function () { n = 0; bikes() };
+            /* continuous */
+            function th() { var v = +$('#thR').value; $('#thV').textContent = v.toFixed(1); $('#thI').style.left = 'calc(' + ((v - 10) / 30 * 100) + '% - 6px)' }
+            $('#thR').oninput = th; th();
+
+            /* viz picker */
+            var notes = { line: 'Line chart: best for showing change over time.', bar: 'Bar chart: best for comparing categories.', pie: 'Pie chart: parts of a whole. Use only with a few categories.', scatter: 'Scatter plot: shows the relationship (correlation) between two variables.' };
+            function viz(c) {
+                var h = '', i;
+                if (c === 'line') {
+                    var X = [50, 130, 210, 290, 370, 450, 530], Y = [170, 150, 160, 110, 120, 70, 50];
+                    h = '<svg viewBox="0 0 600 240" width="100%"><g stroke="rgba(255,255,255,.1)"><line x1="40" y1="200" x2="580" y2="200"/><line x1="40" y1="140" x2="580" y2="140"/><line x1="40" y1="80" x2="580" y2="80"/></g><polyline class="draw" fill="none" stroke="#22d3ee" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="' + X.map(function (x, i) { return x + ',' + Y[i] }).join(' ') + '"/>' + X.map(function (x, i) { return '<circle cx="' + x + '" cy="' + Y[i] + '" r="5" fill="#a78bfa"/>' }).join('') + '<text x="40" y="225">Mon</text><text x="285" y="225">Thu</text><text x="520" y="225">Sun</text></svg>'
+                }
+                if (c === 'bar') { var v = [62, 85, 40, 95, 55]; h = '<div class="chart">' + v.map(function (x) { return '<div class="bar" data-v="' + x + '" data-h="' + x + '"></div>' }).join('') + '</div><div class="chart-x"><span>Vanilla</span><span>Choc</span><span>Mango</span><span>Straw.</span><span>Mint</span></div>' }
+                if (c === 'pie') {
+                    var P = [45, 30, 15, 10], C = ['#5b8cff', '#22d3ee', '#a78bfa', '#f472b6'], a = 0, r = 90; h = '<svg viewBox="0 0 600 240" width="100%"><g transform="translate(160,120)">';
+                    P.forEach(function (p, i) { var s = a / 100 * 2 * Math.PI - Math.PI / 2; a += p; var e = a / 100 * 2 * Math.PI - Math.PI / 2; h += '<path d="M0 0 L' + (r * Math.cos(s)) + ' ' + (r * Math.sin(s)) + ' A' + r + ' ' + r + ' 0 ' + (p > 50 ? 1 : 0) + ' 1 ' + (r * Math.cos(e)) + ' ' + (r * Math.sin(e)) + 'Z" fill="' + C[i] + '"/>' });
+                    h += '</g>' + P.map(function (p, i) { return '<rect x="330" y="' + (60 + i * 30) + '" width="16" height="16" rx="4" fill="' + C[i] + '"/><text x="354" y="' + (73 + i * 30) + '">Part ' + (i + 1) + ' · ' + p + '%</text>' }).join('') + '</svg>'
+                }
+                if (c === 'scatter') {
+                    h = '<svg viewBox="0 0 600 240" width="100%"><line x1="40" y1="210" x2="580" y2="210" stroke="rgba(255,255,255,.2)"/><line x1="40" y1="20" x2="40" y2="210" stroke="rgba(255,255,255,.2)"/>';
+                    for (i = 0; i < 28; i++) { h += '<circle cx="' + (60 + i * 18) + '" cy="' + (190 - i * 5.2 + Math.sin(i * 7) * 22) + '" r="5" fill="#f472b6" opacity=".85"/>' }
+                    h += '<line x1="55" y1="190" x2="560" y2="55" stroke="#22d3ee" stroke-width="2" stroke-dasharray="6 6"/><text x="300" y="232">Hours studied →</text></svg>'
+                }
+                $('#vizOut').innerHTML = h; $('#vizNote').textContent = notes[c];
+                setTimeout(function () { $$('.bar', $('#vizOut')).forEach(function (b) { b.style.height = b.dataset.h + '%' }); var d = $('.draw', $('#vizOut')); if (d) d.style.strokeDashoffset = 0 }, 60);
+            }
+            tabs('#vizTabs', function (b) { viz(b.dataset.c) }); viz('line');
+
+            /* 4 Vs */
+            var vol = $('#vol'), i, t; for (i = 0; i < 16; i++) { t = document.createElement('i'); t.style.animationDelay = (-Math.random() * 2.4) + 's'; t.style.animationDuration = (1.2 + Math.random() * 1.6) + 's'; vol.appendChild(t) }
+            var vel = $('#vel'); for (i = 0; i < 9; i++) { t = document.createElement('i'); t.style.top = (8 + i * 10) + '%'; t.style.animationDelay = (-Math.random() * 1.4) + 's'; t.style.animationDuration = (.6 + Math.random() * 1.2) + 's'; vel.appendChild(t) }
+            $('#noiseR').oninput = function () {
+                var v = +this.value, z = $('#noiseT'); $('#noisy').style.filter = 'blur(' + (v / 12) + 'px) hue-rotate(' + (-v * 1.2) + 'deg)'; $('#noisy').style.opacity = 1 - v / 160;
+                z.textContent = v < 25 ? 'Clean, reliable data' : v < 60 ? 'Some errors and gaps' : 'Uncertain: can you trust decisions made on this?'; z.style.color = v < 25 ? 'var(--f)' : v < 60 ? 'var(--e)' : 'var(--d)'
+            };
+
+            /* formats */
+            var F = {
+                csv: ['<span class="k">name</span>,<span class="k">age</span>,<span class="k">city</span>\nAli,21,Lahore\nSara,24,Karachi', 'Plain-text rows separated by commas. Simple tables and spreadsheets.'],
+                json: ['{\n  <span class="k">"people"</span>: [\n    { <span class="k">"name"</span>: <span class="s">"Ali"</span>, <span class="k">"age"</span>: 21 },\n    { <span class="k">"name"</span>: <span class="s">"Sara"</span>, <span class="k">"age"</span>: 24 }\n  ]\n}', 'Key-value pairs, lightweight. The standard for web APIs.'],
+                xml: ['&lt;<span class="k">people</span>&gt;\n  &lt;<span class="k">person</span>&gt;\n    &lt;<span class="k">name</span>&gt;<span class="s">Ali</span>&lt;/<span class="k">name</span>&gt;\n    &lt;<span class="k">age</span>&gt;<span class="s">21</span>&lt;/<span class="k">age</span>&gt;\n  &lt;/<span class="k">person</span>&gt;\n&lt;/<span class="k">people</span>&gt;', 'Nested custom tags. Used in documents and enterprise systems.']
+            };
+            function fmt(k) { $('#fmtOut').innerHTML = F[k][0]; $('#fmtNote').textContent = F[k][1] }
+            tabs('#fmtTabs', function (b) { fmt(b.dataset.f) }); fmt('csv');
+
+            /* pivot */
+            var S = [['Vanilla', 'Jan', 120], ['Vanilla', 'Feb', 150], ['Chocolate', 'Jan', 200], ['Chocolate', 'Feb', 180], ['Mango', 'Jan', 90], ['Mango', 'Feb', 140], ['Strawberry', 'Jan', 110], ['Strawberry', 'Feb', 130]];
+            function pivot(g) {
+                var m = {}, idx = g === 'flavor' ? 0 : 1; S.forEach(function (r) { m[r[idx]] = (m[r[idx]] || 0) + r[2] });
+                var max = Math.max.apply(null, Object.keys(m).map(function (k) { return m[k] }));
+                $('#pvT').innerHTML = '<tr><th>' + (g === 'flavor' ? 'Flavour' : 'Month') + '</th><th>Total scoops sold</th></tr>' + Object.keys(m).map(function (k) { return '<tr><td>' + k + '</td><td>' + m[k] + '<span class="mini" style="width:' + (m[k] / max * 160) + 'px"></span></td></tr>' }).join('')
+            }
+            tabs('#pvTabs', function (b) { pivot(b.dataset.g) }); pivot('flavor');
+
+            /* AI applications */
+            var AI = [['🎬', 'Entertainment', 'Streaming services learn what you watch and listen to, then recommend the next show or song. Game AI adapts difficulty to your skill.'],
+            ['🌾', 'Agriculture', 'Drones and sensors feed models that spot crop disease, predict yield and tell farmers when and where to water or fertilise.'],
+            ['🩺', 'Medicine', 'Models help read X-rays and scans, flag risks early and speed up drug discovery by finding patterns in huge medical datasets.'],
+            ['🛍️', 'Retail', 'Stores forecast demand, set prices, prevent fraud and suggest products that match your browsing and buying history.'],
+            ['🏃', 'Fitness', 'Wearables track heart rate, sleep and steps, then learn your habits to give personalised goals and training plans.']];
+            function ai(i) { $('#aiOut').innerHTML = '<div class="pane" style="display:flex;gap:22px;align-items:center;flex-wrap:wrap"><div style="font-size:5rem">' + AI[i][0] + '</div><div style="flex:1;min-width:240px"><h3>' + AI[i][1] + '</h3><p style="color:var(--muted)">' + AI[i][2] + '</p></div></div>' }
+            tabs('#aiTabs', function (b) { ai(+b.dataset.a) }); ai(0);
+
+            /* kNN classifier */
+            var cv = $('#knn'), cx = cv.getContext('2d'), pts = [], col = ['#5b8cff', '#f472b6'];
+            function rnd(c, s) { return c + (Math.random() + Math.random() + Math.random() - 1.5) * s }
+            function draw() { cx.clearRect(0, 0, 800, 360); pts.forEach(function (p) { cx.beginPath(); cx.arc(p.x, p.y, p.n ? 10 : 7, 0, 7); cx.fillStyle = col[p.c]; cx.globalAlpha = p.n ? 1 : .8; cx.fill(); if (p.n) { cx.lineWidth = 3; cx.strokeStyle = '#fff'; cx.stroke() } }); cx.globalAlpha = 1 }
+            function reset() { pts = []; for (var i = 0; i < 22; i++) { pts.push({ x: rnd(260, 110), y: rnd(190, 110), c: 0 }); pts.push({ x: rnd(540, 110), y: rnd(170, 110), c: 1 }) } draw(); $('#knnMsg').textContent = 'Click the canvas.' }
+            cv.addEventListener('click', function (e) {
+                var r = cv.getBoundingClientRect(), x = (e.clientX - r.left) * 800 / r.width, y = (e.clientY - r.top) * 360 / r.height;
+                var tr = pts.filter(function (p) { return !p.n }).map(function (p) { return { p: p, d: Math.hypot(p.x - x, p.y - y) } }).sort(function (a, b) { return a.d - b.d }).slice(0, 5);
+                var v = [0, 0]; tr.forEach(function (t) { v[t.p.c]++ }); var c = v[1] > v[0] ? 1 : 0;
+                draw(); cx.strokeStyle = 'rgba(255,255,255,.5)'; cx.lineWidth = 1; tr.forEach(function (t) { cx.beginPath(); cx.moveTo(x, y); cx.lineTo(t.p.x, t.p.y); cx.stroke() });
+                pts.push({ x: x, y: y, c: c, n: 1 }); draw();
+                $('#knnMsg').textContent = 'Of the 5 nearest neighbours, ' + v[0] + ' are blue and ' + v[1] + ' are pink → classified as ' + (c ? 'pink' : 'blue') + '.'
+            });
+            $('#knnReset').onclick = reset; reset();
+        })();
+    </script>
 </body>
+
 </html>
